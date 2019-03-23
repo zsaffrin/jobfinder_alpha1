@@ -9,7 +9,6 @@ async function getWorkingNomadsJobData() {
 
 async function getWorkingNomadsJobs() {
   const jobData = await getWorkingNomadsJobData();
-  console.info(jobData);
   const formattedJobs = jobData.map(job => ({
     company: job.company_name,
     description: job.description,
