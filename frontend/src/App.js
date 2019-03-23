@@ -1,31 +1,60 @@
 import React, { Component } from 'react';
 
+const groupByKey = (data, key, groupTitle, groupItemsKey) =>
+  data.reduce((acc, entry) => {
+    acc.some(i => i[groupTitle] === entry[key])
+      ? acc.forEach(i => {
+          if (i[groupTitle] === entry[key]) {
+            i[groupItemsKey].push(entry);
+          }
+        })
+      : acc.push({
+          [groupTitle]: entry[key],
+          [groupItemsKey]: [entry],
+        });
+
+    return acc;
+  }, []);
+
 class App extends Component {
   state = {
-    backendPresent: false,
-    checkingBackend: false,
+    loadingJobs: false,
+    jobs: [],
   };
 
   componentDidMount() {
-    this.checkForBackend();
+    this.loadJobs();
   }
 
-  async checkForBackend() {
-    this.setState({ checkingBackend: true });
+  async loadJobs() {
+    this.setState({ loadingJobs: true });
     return await fetch('http://localhost:4382/alljobs')
       .then(async res => {
+        const jobs = await res.json();
         this.setState({
-          checkingBackend: false,
-          backendPresent: await res.ok,
+          loadingJobs: false,
+          jobs: groupByKey(jobs, 'company', 'company', 'jobs'),
         });
       })
       .catch(err => console.error(err));
   }
 
   render() {
+    const { jobs } = this.state;
+
     return (
       <div>
         <h1>JobFinder</h1>
+        {jobs.map(i => (
+          <div key={i.company}>
+            <b>{i.company}</b>
+            <ul>
+              {i.jobs.map(job => (
+                <li key={job.uniqueId}>{job.title}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     );
   }
