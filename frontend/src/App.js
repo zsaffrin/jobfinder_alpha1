@@ -31,9 +31,12 @@ class App extends Component {
     return await fetch('http://localhost:4382/alljobs')
       .then(async res => {
         const jobs = await res.json();
+        const sortedJobs = groupByKey(jobs, 'company', 'company', 'jobs').sort(
+          (a, b) => (a.company.toUpperCase() > b.company.toUpperCase() ? 1 : -1)
+        );
         this.setState({
           loadingJobs: false,
-          jobs: groupByKey(jobs, 'company', 'company', 'jobs'),
+          jobs: sortedJobs,
         });
       })
       .catch(err => console.error(err));
