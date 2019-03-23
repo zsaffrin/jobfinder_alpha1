@@ -22,7 +22,14 @@ async function getWorkingNomadsJobs() {
     url: job.url,
     originalRecord: job,
   }));
-  return formattedJobs;
+  const filteredJobs = formattedJobs.filter(job => {
+    return (
+      job.originalRecord.category_name === 'Development' ||
+      job.originalRecord.category_name === 'Customer Success' ||
+      job.originalRecord.category_name === 'Management'
+    );
+  });
+  return filteredJobs;
 }
 
 export { getWorkingNomadsJobs };
