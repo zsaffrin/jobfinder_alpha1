@@ -12,7 +12,7 @@ class App extends Component {
 
   async checkForBackend() {
     this.setState({ checkingBackend: true });
-    return await fetch('http://localhost:4382')
+    return await fetch('http://localhost:4382/alljobs')
       .then(async res => {
         this.setState({
           checkingBackend: false,
