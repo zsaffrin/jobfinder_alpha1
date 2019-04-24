@@ -1,15 +1,12 @@
 import express from 'express';
 import cors from 'cors';
+import apiRoutes from './routes/apiRoutes';
 import { getAllJobs } from './lib/fetcher';
 
 const app = express();
 
 app.use(cors());
-
-app.get('/alljobs', async (req, res, next) => {
-  const jobs = await getAllJobs();
-  res.json(jobs);
-});
+app.use('/api', apiRoutes);
 
 const port = 4382;
 app.listen(port, () =>
