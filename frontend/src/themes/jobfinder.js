@@ -6,6 +6,13 @@ const jobfinderTheme = {
   color: {
     primary: base.colors.blue[9],
     white: base.colors.gray[0]
+  },
+  font: {
+    weight: {
+      body: {
+        bold: 700
+      }
+    }
   }
 };
 
