@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+
+import Header from './Header';
+
+import { jobfinderTheme } from '../../themes';
 
 class App extends Component {
   state = {
@@ -28,17 +33,25 @@ class App extends Component {
   render() {
     const { jobs, loadingJobs, sources } = this.state;
 
+    const StyledApp = styled.div`
+      display: grid;
+      grid-template-rows: auto 1fr;
+      height: 100vh;
+    `;
+
     return (
-      <div>
-        <h1>jobfinder</h1>
-        <div>
-          {loadingJobs
-            ? '⌛'
-            : `Loaded ${jobs.length} jobs from ${
-                Object.keys(sources).length
-              } sources`}
-        </div>
-      </div>
+      <ThemeProvider theme={jobfinderTheme}>
+        <StyledApp>
+          <Header />
+          <div>
+            {loadingJobs
+              ? '⌛'
+              : `Loaded ${jobs.length} jobs from ${
+                  Object.keys(sources).length
+                } sources`}
+          </div>
+        </StyledApp>
+      </ThemeProvider>
     );
   }
 }
