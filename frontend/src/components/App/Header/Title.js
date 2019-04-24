@@ -4,10 +4,15 @@ import { Link } from '@reach/router';
 
 const Title = () => {
   const StyledLink = styled(Link)(({ theme }) => {
-    const { colors } = theme;
+    const { colors, space } = theme;
     return `
-    color: inherit;  
-    text-decoration: none;
+      color: inherit;  
+      padding: ${space.sm} ${space.md};
+      text-decoration: none;
+
+      &:hover {
+        color: ${colors.blue[3]}
+      }
     `;
   });
   const StyledHeading = styled.h1`
