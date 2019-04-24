@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import apiRoutes from './routes/apiRoutes';
-import { getAllJobs } from './lib/fetcher';
 
 const app = express();
 
