@@ -9,7 +9,7 @@ const Header = () => {
     return `
       background: ${color.primary};
       color: ${color.white};
-      padding: ${space.thin} ${space.sm};
+      padding: ${space.sm} ${space.md};
     `;
   });
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
 import Header from './Header';
+import Content from './Content';
 
 import { jobfinderTheme } from '../../themes';
 
@@ -43,13 +44,7 @@ class App extends Component {
       <ThemeProvider theme={jobfinderTheme}>
         <StyledApp>
           <Header />
-          <div>
-            {loadingJobs
-              ? '⌛'
-              : `Loaded ${jobs.length} jobs from ${
-                  Object.keys(sources).length
-                } sources`}
-          </div>
+          <Content jobs={jobs} loadingJobs={loadingJobs} sources={sources} />
         </StyledApp>
       </ThemeProvider>
     );
