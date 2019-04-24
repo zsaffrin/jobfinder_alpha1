@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 import ListItemTitle from './ListItemTitle';
 import ListItemSource from './ListItemSource';
+import ListItemLocation from './ListItemLocation';
 import ListItemGridArea from './ListItemGridArea';
 
 const JobListItem = ({ job }) => {
-  const { company, location, source, title } = job;
+  const { company, location, remote, source, title } = job;
 
   const ListItem = styled.li(({ theme }) => {
     const { color, space } = theme;
@@ -27,7 +28,7 @@ const JobListItem = ({ job }) => {
       <ListItemTitle title={title} />
       <ListItemGridArea area="company" data={company} />
       <ListItemSource source={source} />
-      <ListItemGridArea area="location" data={location} />
+      <ListItemLocation location={location} remote={remote} />
     </ListItem>
   );
 };

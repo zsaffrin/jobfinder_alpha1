@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBicycle, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faCodepen } from '@fortawesome/free-brands-svg-icons';
 
 import Header from './Header';
 import Content from './Content';
 
 import { jobfinderTheme } from '../../themes';
+
+library.add(faBicycle, faCodepen, faGlobe);
 
 class App extends Component {
   state = {

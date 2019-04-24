@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import ListItem from './ListItem';
 
-const JobList = ({ jobs }) => {
+const List = ({ items }) => {
   const List = styled.ul(({ theme }) => {
     const { space } = theme;
     return `
@@ -19,9 +19,9 @@ const JobList = ({ jobs }) => {
 
   return (
     <List>
-      {jobs && jobs.map(job => <ListItem key={job.uniqueId} job={job} />)}
+      {items && items.map(item => <ListItem key={item.uniqueId} job={item} />)}
     </List>
   );
 };
 
-export default JobList;
+export default List;

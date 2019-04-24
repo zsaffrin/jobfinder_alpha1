@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Router } from '@reach/router';
 
-import JobList from './JobList';
+import Login from './pages/Login';
+import JobList from './pages/JobList';
 
 const Content = ({ jobs, loadingJobs, sources }) => {
   const ContentSection = styled.main(({ theme }) => {
@@ -13,16 +15,15 @@ const Content = ({ jobs, loadingJobs, sources }) => {
 
   return (
     <ContentSection>
-      <div>
-        <strong>
-          {loadingJobs
-            ? '⌛'
-            : `Loaded ${jobs.length} jobs from ${
-                Object.keys(sources).length
-              } sources`}
-        </strong>
-      </div>
-      <JobList jobs={jobs} />
+      <Router>
+        <Login path="/login" />
+        <JobList
+          path="/jobs"
+          jobs={jobs}
+          loadingJobs={loadingJobs}
+          sources={sources}
+        />
+      </Router>
     </ContentSection>
   );
 };
