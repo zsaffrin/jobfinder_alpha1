@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from '@reach/router';
+import { FirebaseAuthConsumer } from '@react-firebase/auth';
+
+import Login from './Login';
+import User from './User';
 
 const Identity = () => {
   const IdentityDiv = styled.div(({ theme }) => {
@@ -15,22 +18,12 @@ const Identity = () => {
       }
     `;
   });
-  const StyledLink = styled(Link)(({ theme }) => {
-    const { colors, space } = theme;
-    return `
-      color: inherit;  
-      padding: ${space.sm} ${space.md};
-      text-decoration: none;
-
-      &:hover {
-        color: ${colors.blue[5]};
-      }
-    `;
-  });
 
   return (
     <IdentityDiv>
-      <StyledLink to="/login">Login</StyledLink>
+      <FirebaseAuthConsumer>
+        {({ isSignedIn }) => (isSignedIn ? <User /> : <Login />)}
+      </FirebaseAuthConsumer>
     </IdentityDiv>
   );
 };

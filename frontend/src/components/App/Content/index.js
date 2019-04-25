@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Router } from '@reach/router';
+import { FirebaseAuthConsumer } from '@react-firebase/auth';
 
 import Login from './pages/Login';
 import JobList from './pages/JobList';
@@ -15,15 +15,9 @@ const Content = ({ jobs, loadingJobs, sources }) => {
 
   return (
     <ContentSection>
-      <Router>
-        <Login path="/login" />
-        <JobList
-          path="/jobs"
-          jobs={jobs}
-          loadingJobs={loadingJobs}
-          sources={sources}
-        />
-      </Router>
+      <FirebaseAuthConsumer>
+        {({ isSignedIn }) => (isSignedIn ? <JobList /> : <Login />)}
+      </FirebaseAuthConsumer>
     </ContentSection>
   );
 };
