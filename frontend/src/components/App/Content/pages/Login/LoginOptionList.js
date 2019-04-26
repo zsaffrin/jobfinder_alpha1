@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { loginWithGoogle } from '../../../../../utils/authUtils';
 import LoginOptionItem from './LoginOptionItem';
 
 const LoginOptionList = () => {
@@ -12,7 +13,11 @@ const LoginOptionList = () => {
 
   return (
     <OptionList>
-      <LoginOptionItem icon={['fab', 'google']} title="Google" />
+      <LoginOptionItem
+        action={loginWithGoogle}
+        icon={['fab', 'google']}
+        title="Google"
+      />
     </OptionList>
   );
 };
