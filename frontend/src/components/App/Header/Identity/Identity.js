@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useFirebaseAuth } from '../../../../utils/authUtils';
+import { useFirebaseAuth } from '../../../../utils';
 
 import LoadingIcon from '../../../shared/LoadingIcon';
 import Login from './Login';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from '@reach/router';
 import styled from 'styled-components';
-import { useFirebaseAuth } from '../../../../../utils/authUtils';
+import { useFirebaseAuth } from '../../../../../utils';
 
 import LoadingPage from '../../../../shared/LoadingPage';
 import ContentBox from './ContentBox';
