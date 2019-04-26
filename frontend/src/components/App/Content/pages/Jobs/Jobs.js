@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useFirebaseAuth } from '../../../../../utils';
 
 import LiveJobs from './LiveJobs';
 import UserJobs from './UserJobs';
+import SystemJobs from './SystemJobs';
 
 const Jobs = () => {
+  const { initialising, isAuthed, user } = useFirebaseAuth();
+
   const JobsPage = styled.div(({ theme }) => {
     const { space } = theme;
     return `
@@ -16,7 +20,8 @@ const Jobs = () => {
   return (
     <JobsPage>
       <LiveJobs />
-      <UserJobs />
+      {!initialising && isAuthed && <UserJobs user={user} />}
+      <SystemJobs />
     </JobsPage>
   );
 };
