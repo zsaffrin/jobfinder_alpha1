@@ -1,12 +1,12 @@
 import express from 'express';
-import { getJobsBySource, getOrganizedJobs } from '../lib/fetchers';
+import { getJobsBySource, getAllJobs } from '../lib/fetchers';
 
 const routes = express.Router();
 
 routes.get('/jobs/:sourceid?', async (req, res) => {
   const jobs = req.params.sourceid
     ? await getJobsBySource(req.params.sourceid)
-    : await getOrganizedJobs();
+    : await getAllJobs();
   res.json(jobs);
 });
 
