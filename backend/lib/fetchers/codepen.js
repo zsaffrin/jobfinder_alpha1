@@ -12,14 +12,14 @@ async function getCodepenJobs() {
   const formattedJobs = jobData.jobs.map(job => ({
     company: job.company_name,
     description: job.description,
-    location: job.address,
+    location: job.location,
     remote: job.remote,
     source: 'codepen',
     tags: [],
     title: job.title,
     uniqueId: job.hashid,
     url: job.url,
-    originalRecord: job,
+    originalRecord: job
   }));
   return formattedJobs;
 }

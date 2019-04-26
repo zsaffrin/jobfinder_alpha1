@@ -19,16 +19,9 @@ async function getWorkingNomadsJobs() {
     title: job.title,
     uniqueId: job.pub_date,
     url: job.url,
-    originalRecord: job,
+    originalRecord: job
   }));
-  const filteredJobs = formattedJobs.filter(job => {
-    return (
-      job.originalRecord.category_name === 'Development' ||
-      job.originalRecord.category_name === 'Customer Success' ||
-      job.originalRecord.category_name === 'Management'
-    );
-  });
-  return filteredJobs;
+  return formattedJobs;
 }
 
 export { getWorkingNomadsJobs };
