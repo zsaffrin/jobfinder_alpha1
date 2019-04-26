@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { firebase } from '../../../../../firebase';
+import { loginWithGoogle } from '../../../../../utils/authUtils';
 
 const LoginOptionItem = ({ icon, title }) => {
   const OptionItem = styled.li(({ theme }) => {
@@ -24,13 +24,7 @@ const LoginOptionItem = ({ icon, title }) => {
   });
 
   return (
-    <OptionItem
-      role="button"
-      onClick={() => {
-        const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(googleAuthProvider);
-      }}
-    >
+    <OptionItem role="button" onClick={loginWithGoogle}>
       <FontAwesomeIcon icon={icon} />
       <div>{title}</div>
     </OptionItem>
