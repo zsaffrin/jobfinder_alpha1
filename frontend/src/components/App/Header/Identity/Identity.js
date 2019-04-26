@@ -1,15 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { firebase } from '../../../../firebase';
+import { useFirebaseAuth } from '../../../../utils/authUtils';
 
 import LoadingIcon from '../../../shared/LoadingIcon';
 import Login from './Login';
 import Logout from './Logout';
 
 const Identity = () => {
-  const { initialising, user } = useAuthState(firebase.auth());
-  const isAuthed = user !== null;
+  const { initialising, isAuthed } = useFirebaseAuth();
 
   const StyledDiv = styled.div`
     grid-column: -1;

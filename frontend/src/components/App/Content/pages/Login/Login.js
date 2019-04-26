@@ -1,16 +1,17 @@
 import React from 'react';
 import { Redirect } from '@reach/router';
 import styled from 'styled-components';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { firebase } from '../../../../../firebase';
+import { useFirebaseAuth } from '../../../../../utils/authUtils';
 
+import LoadingPage from '../../../../shared/LoadingPage';
 import ContentBox from './ContentBox';
 import LoginOptionList from './LoginOptionList';
 
 const Login = () => {
-  const { user } = useAuthState(firebase.auth());
+  const { initialising, isAuthed } = useFirebaseAuth();
 
-  if (user !== null) return <Redirect to="/" />;
+  if (initialising) return <LoadingPage />;
+  if (isAuthed) return <Redirect from="/login" to="/" />;
 
   const LoginPage = styled.div`
     display: grid;
