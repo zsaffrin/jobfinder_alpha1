@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import { useFirebaseAuth } from '../../../../../utils';
 
 import LiveJobs from './LiveJobs';
-import UserJobs from './UserJobs';
-import SystemJobs from './SystemJobs';
+import WorkingJobs from './WorkingJobs';
 
 const Jobs = () => {
-  const { initialising, isAuthed, user } = useFirebaseAuth();
+  const { user } = useFirebaseAuth();
 
   const JobsPage = styled.div(({ theme }) => {
     const { space } = theme;
@@ -19,9 +18,8 @@ const Jobs = () => {
 
   return (
     <JobsPage>
-      <LiveJobs />
-      {!initialising && isAuthed && <UserJobs user={user} />}
-      <SystemJobs />
+      <LiveJobs user={user} />
+      <WorkingJobs />
     </JobsPage>
   );
 };

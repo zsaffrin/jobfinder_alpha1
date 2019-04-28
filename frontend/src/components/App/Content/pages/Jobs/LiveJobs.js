@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { loadJobs } from '../../../../../utils';
 import LoadingIcon from '../../../../shared/LoadingIcon';
 
-const LiveJobs = () => {
+const LiveJobs = ({ user }) => {
   const [isLoadingLiveJobs, setIsLoadingLiveJobs] = useState(false);
   const [liveJobs, setLiveJobs] = useState([]);
 
