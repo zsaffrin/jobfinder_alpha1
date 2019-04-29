@@ -1,19 +1,25 @@
 import React from 'react';
+import { Redirect } from '@reach/router';
 import styled from 'styled-components';
+import { useFirebaseAuth } from '../../../../../utils';
 
+import LoadingPage from '../../../../shared/LoadingPage';
+import ContentBox from './ContentBox';
 import LoginOptionList from './LoginOptionList';
 
 const Login = () => {
+  const { initialising, isAuthed } = useFirebaseAuth();
+
+  if (initialising) return <LoadingPage />;
+  if (isAuthed) return <Redirect from="/login" to="/" />;
+
   const LoginPage = styled.div`
     display: grid;
     align-items: center;
     justify-items: center;
     height: 100%;
   `;
-  const ContentBox = styled.div`
-    text-align: center;
-    width: 24em;
-  `;
+
   return (
     <LoginPage>
       <ContentBox>

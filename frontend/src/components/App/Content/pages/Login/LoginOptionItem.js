@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { loginWithGoogle } from '../../../../../utils/authUtils';
 
-const LoginOptionItem = ({ icon, title }) => {
+const LoginOptionItem = ({ action, icon, title }) => {
   const OptionItem = styled.li(({ theme }) => {
     const { colors, space } = theme;
     return `
@@ -16,7 +15,6 @@ const LoginOptionItem = ({ icon, title }) => {
       align-item: center;
       justify-content: center;
       padding: ${space.lg};
-
       &:hover {
         background: ${colors.blue[0]};
       }
@@ -24,9 +22,9 @@ const LoginOptionItem = ({ icon, title }) => {
   });
 
   return (
-    <OptionItem role="button" onClick={loginWithGoogle}>
+    <OptionItem role="button" onClick={() => action()}>
       <FontAwesomeIcon icon={icon} />
-      <div>{title}</div>
+      <span>{title}</span>
     </OptionItem>
   );
 };

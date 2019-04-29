@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Title from './Title';
-import Identity from './Identity';
+import PageNav from './PageNav/PageNav';
+import Identity from './Identity/Identity';
 
 const Header = () => {
   const StyledHeader = styled.header(({ theme }) => {
@@ -11,13 +12,14 @@ const Header = () => {
       background: ${color.primary};
       color: ${color.white};
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: auto auto 1fr auto;
     `;
   });
 
   return (
     <StyledHeader>
       <Title />
+      <PageNav />
       <Identity />
     </StyledHeader>
   );
