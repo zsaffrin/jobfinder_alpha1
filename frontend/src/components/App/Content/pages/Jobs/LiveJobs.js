@@ -20,11 +20,11 @@ const LiveJobs = ({ user }) => {
       });
   };
 
-  const recognizedJobs = liveJobs.filter(
-    job =>
-      systemJobs.filter(sysJob => job.uniqueId === sysJob.uniqueId).length > 0
-  );
-  console.info(recognizedJobs);
+  const isJobNew = job =>
+    systemJobs.filter(sysJob => sysJob.uniqueId === job.uniqueId).length === 0;
+
+  const newJobs = liveJobs.filter(job => isJobNew(job));
+  const recognizedJobs = liveJobs.filter(job => !isJobNew(job));
 
   return (
     <div>
@@ -37,7 +37,7 @@ const LiveJobs = ({ user }) => {
           {liveJobs.length > 0
             ? `${liveJobs.length} jobs loaded. ${
                 recognizedJobs.length
-              } recognized`
+              } recognized. ${newJobs.length} new jobs found`
             : 'No live jobs loaded'}
         </div>
       )}
